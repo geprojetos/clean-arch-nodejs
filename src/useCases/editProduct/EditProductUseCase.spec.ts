@@ -1,8 +1,8 @@
 import { IProductItem } from "../../domain/product/IProductItem";
 import { messages } from "../../helpers";
+import InMemoryRepository from "../../infra/repositories/InMemoryRepository";
 import InMemoryCreateProductController from "../../tests/product/InMemoryCreateProductController";
 import InMemoryEditProductController from "../../tests/product/InMemoryEditProductController";
-import InMemoryFileAdapterRepository from "../../tests/product/InMemoryFileAdapterRepository";
 import CreateProductUseCase from "../createProduct/CreateProductUseCase";
 import EditProductUseCase from "./EditProductUseCase";
 
@@ -12,19 +12,19 @@ describe("Edit Product Use Case", () => {
     price: 22.1,
   };
 
-  let inMemoryFileAdapter: InMemoryFileAdapterRepository;
+  let inMemoryRepository: InMemoryRepository;
   let createProductUseCase: CreateProductUseCase;
   let inMemoryCreateProductsController: InMemoryCreateProductController;
   let editProductUseCase: EditProductUseCase;
   let inMemoryEditProductsController: InMemoryEditProductController;
 
   beforeAll(() => {
-    inMemoryFileAdapter = new InMemoryFileAdapterRepository();
-    createProductUseCase = new CreateProductUseCase(inMemoryFileAdapter);
+    inMemoryRepository = new InMemoryRepository();
+    createProductUseCase = new CreateProductUseCase(inMemoryRepository);
     inMemoryCreateProductsController = new InMemoryCreateProductController(
       createProductUseCase
     );
-    editProductUseCase = new EditProductUseCase(inMemoryFileAdapter);
+    editProductUseCase = new EditProductUseCase(inMemoryRepository);
     inMemoryEditProductsController = new InMemoryEditProductController(
       editProductUseCase
     );

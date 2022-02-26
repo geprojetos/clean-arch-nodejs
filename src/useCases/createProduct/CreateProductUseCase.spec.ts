@@ -1,7 +1,7 @@
 import { IProductItem } from "../../domain/product/IProductItem";
 import { messages } from "../../helpers";
+import InMemoryRepository from "../../infra/repositories/InMemoryRepository";
 import InMemoryCreateProductController from "../../tests/product/InMemoryCreateProductController";
-import InMemoryFileAdapterRepository from "../../tests/product/InMemoryFileAdapterRepository";
 import CreateProductUseCase from "./CreateProductUseCase";
 
 describe("Create New Product Use Case", () => {
@@ -16,13 +16,13 @@ describe("Create New Product Use Case", () => {
     price: 22.2,
   };
 
-  let inMemoryFileAdapter: InMemoryFileAdapterRepository;
+  let inMemoryRepository: InMemoryRepository;
   let createProductUseCase: CreateProductUseCase;
   let inMemoryCreateProductsController: InMemoryCreateProductController;
 
   beforeAll(() => {
-    inMemoryFileAdapter = new InMemoryFileAdapterRepository();
-    createProductUseCase = new CreateProductUseCase(inMemoryFileAdapter);
+    inMemoryRepository = new InMemoryRepository();
+    createProductUseCase = new CreateProductUseCase(inMemoryRepository);
     inMemoryCreateProductsController = new InMemoryCreateProductController(
       createProductUseCase
     );

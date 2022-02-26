@@ -1,5 +1,5 @@
 import { IProductItem } from "../../domain/product/IProductItem";
-import { logger, messages } from "../../helpers";
+import { messages } from "../../helpers";
 import {
   ICreateProduct,
   ICreateProductResponse,
@@ -17,7 +17,7 @@ import {
   IGetAllProductsResponse,
 } from "../../useCases/getProducts/IGetAllProducts";
 
-class InMemoryFileAdapterRepository
+class InMemoryRepository
   implements IGetAllProducts, ICreateProduct, IEditProduct, IDeleteProduct
 {
   private _productsList: IProductItem[];
@@ -47,7 +47,6 @@ class InMemoryFileAdapterRepository
           (productItem) => productItem._id === product._id
         )
       ) {
-        logger(messages("errorCreated"));
         return {
           error: messages("errorCreated"),
         };
@@ -77,7 +76,6 @@ class InMemoryFileAdapterRepository
       if (
         copyProductList.some((productItem) => productItem._id !== product._id)
       ) {
-        logger(messages("errorEdited"));
         return {
           error: messages("errorEdited"),
         };
@@ -127,4 +125,4 @@ class InMemoryFileAdapterRepository
   }
 }
 
-export default InMemoryFileAdapterRepository;
+export default InMemoryRepository;

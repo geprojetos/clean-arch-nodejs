@@ -1,8 +1,8 @@
 import { IProductItem } from "../../domain/product/IProductItem";
 import { messages } from "../../helpers";
+import InMemoryRepository from "../../infra/repositories/InMemoryRepository";
 import InMemoryCreateProductController from "../../tests/product/InMemoryCreateProductController";
 import InMemoryDeleteProductsController from "../../tests/product/InMemoryDeleteProductsController";
-import InMemoryFileAdapterRepository from "../../tests/product/InMemoryFileAdapterRepository";
 import CreateProductUseCase from "../createProduct/CreateProductUseCase";
 import DeleteProductUseCase from "./DeleteProductUseCase";
 
@@ -11,19 +11,19 @@ describe("Delete Product Use Case", () => {
     name: "Product delete",
     price: 22.5,
   };
-  let inMemoryFileAdapter: InMemoryFileAdapterRepository;
+  let inMemoryRepository: InMemoryRepository;
   let createProductUseCase: CreateProductUseCase;
   let inMemoryCreateProductsController: InMemoryCreateProductController;
   let deleteProductUseCase: DeleteProductUseCase;
   let inMemoryDeleteProductsController: InMemoryDeleteProductsController;
 
   beforeAll(() => {
-    inMemoryFileAdapter = new InMemoryFileAdapterRepository();
-    createProductUseCase = new CreateProductUseCase(inMemoryFileAdapter);
+    inMemoryRepository = new InMemoryRepository();
+    createProductUseCase = new CreateProductUseCase(inMemoryRepository);
     inMemoryCreateProductsController = new InMemoryCreateProductController(
       createProductUseCase
     );
-    deleteProductUseCase = new DeleteProductUseCase(inMemoryFileAdapter);
+    deleteProductUseCase = new DeleteProductUseCase(inMemoryRepository);
     inMemoryDeleteProductsController = new InMemoryDeleteProductsController(
       deleteProductUseCase
     );

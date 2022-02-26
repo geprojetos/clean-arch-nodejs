@@ -1,15 +1,15 @@
-import InMemoryFileAdapterRepository from "../../tests/product/InMemoryFileAdapterRepository";
+import InMemoryRepository from "../../infra/repositories/InMemoryRepository";
 import InMemoryGetAllProductsController from "../../tests/product/InMemoryGetAllProductsController";
 import GetAllProductsUseCase from "./GetAllProductsUseCase";
 
 describe("Get All Products Use Case", () => {
-  let inMemoryFileAdapter: InMemoryFileAdapterRepository;
+  let inMemoryRepository: InMemoryRepository;
   let getAllProductsUseCase: GetAllProductsUseCase;
   let inMemoryGetAllProductsController: InMemoryGetAllProductsController;
 
   beforeAll(() => {
-    inMemoryFileAdapter = new InMemoryFileAdapterRepository();
-    getAllProductsUseCase = new GetAllProductsUseCase(inMemoryFileAdapter);
+    inMemoryRepository = new InMemoryRepository();
+    getAllProductsUseCase = new GetAllProductsUseCase(inMemoryRepository);
     inMemoryGetAllProductsController = new InMemoryGetAllProductsController(
       getAllProductsUseCase
     );
