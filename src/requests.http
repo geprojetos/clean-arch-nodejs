@@ -1,0 +1,29 @@
+GET http://localhost:4002/products
+
+###
+
+POST http://localhost:4002/products
+content-type: application/json
+
+{
+    "name": "Carderno 10 matérias",
+    "price": 44.99
+}
+
+###
+
+PATCH http://localhost:4002/products/6070-9643
+content-type: application/json
+
+{
+    "name": "Carderno 10 matérias",
+    "price": 22.10
+}
+
+###
+DELETE http://localhost:4002/products/5783-833
+content-type: application/json
+
+###
+
+
